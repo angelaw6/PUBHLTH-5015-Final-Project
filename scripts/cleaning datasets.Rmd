@@ -63,7 +63,7 @@ healthcare_access_data <- main[, healthcare_vars]
 healthcare_access_data <- healthcare_access_data[-1, ]
 ```
 
-# Join SVI and Healthcare access into single dataset
+# Join SVI and Healthcare access into single dataset (will be put into data folder)
 ```{r}
 # Join both datasets based on FIPS
 merged_data = healthcare_access_data %>% 
