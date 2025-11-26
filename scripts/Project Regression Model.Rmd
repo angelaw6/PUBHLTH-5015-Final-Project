@@ -1,6 +1,6 @@
 ---
 title: "pubhlth project"
-author: "Angela Wei, Brookee Bodine, Rosa Ferdelman"
+author: "Angela Wei, Brooke Bodine, Rosa Ferdelman"
 date: "2025-11-16"
 output:
   pdf_document: default
