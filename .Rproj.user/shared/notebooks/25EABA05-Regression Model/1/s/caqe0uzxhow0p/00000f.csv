@@ -1,0 +1,4 @@
+"0","# Correlation Matrix"
+"0","numeric_vars <- dplyr::select(merged_data, where(is.numeric))"
+"0","cor_matrix = cor(numeric_vars, use = ""pairwise.complete.obs"")"
+"0","corrplot(cor_matrix, method = ""color"", tl.cex = 0.7)"

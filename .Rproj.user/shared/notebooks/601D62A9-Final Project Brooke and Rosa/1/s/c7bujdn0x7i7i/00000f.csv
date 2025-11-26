@@ -1,0 +1,8 @@
+"0","#your health data (the second dataset I imagine you want to use"
+"0","ohio_health = read_csv(""OhioHealthData.csv"", show_col_types = FALSE) |>"
+"0","  clean_names() |>"
+"0","  mutate("
+"0","    county = str_to_upper(county)"
+"0","  )"
+"0",""
+"0","head(ohio_health)"

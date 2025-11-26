@@ -1,0 +1,2 @@
+"0","merged_data <- read_csv(""../data/SVI_HealthcareAccess_dataset.csv"")"
+"0","head(merged_data)"

@@ -1,0 +1,5 @@
+"0","#this is just the start point for counties"
+"0","county_raw = read_csv(""SVI_County_Export.csv"", show_col_types = FALSE) |>"
+"0","  clean_names()"
+"2","Error: 'SVI_County_Export.csv' does not exist in current working directory ('/Users/angelawei/Downloads/modified_files_rosa').
+"

@@ -1,0 +1,5 @@
+"0","#inner join the two datasets by county, wsanity checked 54 colns"
+"0","merged_data = healthcare_access_data %>% "
+"0","  left_join(county_svi_simple, by = c(""FIPS"" = ""fips""))"
+"0",""
+"0","head(merged_data)"
