@@ -4,6 +4,9 @@ author: "Angela Wei, Brooke Bodine, Rosa Ferdelman"
 date: "2025-11-26"
 output: html_document
 ---
+# Overview
+
+This script cleans and joins the raw data files "2025 County Health Rankings Ohio Data - v3.xlsx" and "SVI_County_Export.csv" into a single csv file called "SVI_HealthcareAccess_dataset.csv". This csv file contains all SVI variables and Primary Physician rate information in a joined dataset that will be used for the linear regression model. 
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
