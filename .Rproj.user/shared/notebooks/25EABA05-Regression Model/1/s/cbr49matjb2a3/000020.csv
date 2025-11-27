@@ -1,3 +1,0 @@
-"0","# Residual Plots"
-"0","par(mfrow = c(2,2))"
-"0","plot(full_mod)"
