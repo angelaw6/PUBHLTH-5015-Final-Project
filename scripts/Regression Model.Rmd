@@ -1,6 +1,6 @@
 ---
 title: "Regression_model"
-author: "Angela Wei"
+author: "Angela Wei, Brooke Bodine, Rosa Ferdelman"
 date: "2025-11-26"
 output: html_document
 ---
