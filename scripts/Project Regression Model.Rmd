@@ -25,13 +25,13 @@ library(MASS)
 ### Import datasets
 ```{r cars}
 # Healthcare access dataset
-excel_sheets("2025 County Health Rankings Ohio Data - v3.xlsx")
+excel_sheets("../data/2025 County Health Rankings Ohio Data - v3.xlsx")
 
-main <- read_excel("2025 County Health Rankings Ohio Data - v3.xlsx",
+main <- read_excel("../data/2025 County Health Rankings Ohio Data - v3.xlsx",
                        sheet = "Select Measure Data", skip = 1)
 
 # SVI Dataset 
-county_raw = read_csv("SVI_County_Export.csv", show_col_types = FALSE) |>
+county_raw = read_csv("../data/SVI_County_Export.csv", show_col_types = FALSE) |>
   clean_names()
 
 #now we can clean them properly
@@ -258,9 +258,9 @@ Appendix
 # creating csv from raw data file
 
 ```{r}
-excel_sheets("2025 County Health Rankings Ohio Data - v3.xlsx")
+excel_sheets("../data/2025 County Health Rankings Ohio Data - v3.xlsx")
 
-main <- read_excel("2025 County Health Rankings Ohio Data - v3.xlsx",
+main <- read_excel("../data/2025 County Health Rankings Ohio Data - v3.xlsx",
                        sheet = "Select Measure Data", skip = 1)
 healthcare_vars <- c(
   "FIPS", "State", "County",  # keep these for identification
