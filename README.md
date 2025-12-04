@@ -9,13 +9,13 @@ Your README.md at the project root must contain:
   <li> Software requirements: R version, key packages, and (if used) environment management
 tools such as renv. </li>
   <li> Step-by-step reproduction instructions, for example: 
-    <ol type="a" style="list-style-type: lower-alpha;">
+    <ul>
       <li> Clone the repository. </li>
       <li> Open the RStudio Project. </li>
       <li> Install dependencies (e.g., run renv::restore() or a provided installation script).</li>
       <li> Run a single script (e.g., scripts/run_all.R) or knit the main R Markdown/Quarto file to
 reproduce all results.</li>
-    </ol>
+    </ul>
   </li>
   <li> A brief description of the contents of each main folder (data/, scripts/, figs/, results/,
 docs/).</li>
