@@ -9,7 +9,7 @@ Your README.md at the project root must contain:
   <li> Software requirements: R version, key packages, and (if used) environment management
 tools such as renv. </li>
   <li> Step-by-step reproduction instructions, for example: 
-    <ol type ="A">
+    <ol type="a" style="list-style-type: lower-alpha;">
       <li> Clone the repository. </li>
       <li> Open the RStudio Project. </li>
       <li> Install dependencies (e.g., run renv::restore() or a provided installation script).</li>
