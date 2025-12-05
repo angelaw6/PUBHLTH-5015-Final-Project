@@ -167,7 +167,6 @@ step_mod = stepAIC(full_mod, direction = "backward")
 
 ```{r}
 AIC(full_mod, step_mod)
-BIC(full_mod, step_mod)
 summary(full_mod)$adj.r.squared
 summary(step_mod)$adj.r.squared
 names(step_mod$coefficients)[-1]
