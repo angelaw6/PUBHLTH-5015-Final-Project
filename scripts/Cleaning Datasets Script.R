@@ -1,9 +1,3 @@
----
-  title: "Cleaning datasets 1"
-author: "Angela Wei, Brooke Bodine, Rosa Ferdelman"
-date: "2025-11-26"
-output: html_document
----
 library(dplyr)
 library(tidyverse)
 library(readxl)
@@ -11,7 +5,7 @@ library(readr)
 library(janitor)
 
 # SVI Dataset 
-county_raw = read_csv("../data/SVI_County_Export.csv", show_col_types = FALSE) |>
+county_raw = read_csv("data/SVI_County_Export.csv", show_col_types = FALSE) |>
   clean_names()
 
 # Cleaning SVI Dataset
@@ -35,8 +29,8 @@ county_svi_simple$fips <- sprintf("%05d", county_svi_simple$fips)
 
 
 # Healthcare Access dataset
-excel_sheets("../data/2025 County Health Rankings Ohio Data - v3.xlsx")
-main <- read_excel("../data/2025 County Health Rankings Ohio Data - v3.xlsx",
+excel_sheets("data/2025 County Health Rankings Ohio Data - v3.xlsx")
+main <- read_excel("data/2025 County Health Rankings Ohio Data - v3.xlsx",
                    sheet = "Select Measure Data", skip = 1)
 
 # Process datast (extract primary care physician info)
@@ -57,4 +51,4 @@ merged_data = healthcare_access_data %>%
 
 head(merged_data)
 print(colnames(merged_data))
-write_csv(merged_data, "../data/SVI_HealthcareAccess_dataset.csv")
+write_csv(merged_data, "data/SVI_HealthcareAccess_dataset.csv")
