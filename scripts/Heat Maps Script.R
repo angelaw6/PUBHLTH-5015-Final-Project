@@ -1,21 +1,4 @@
----
-title: "Heat Map Code"
-author: "Rosa Ferdelman, Brooke Bodine, Angela Wei"
-date: "2025-11-26"
-output: html_document
----
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
-
-## R Markdown
-
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
-
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
-
-```{r}
+# Heat map code
 library(maps)
 library(ggplot2)
 library(dplyr)
@@ -27,66 +10,20 @@ library(janitor)
 library(fastDummies)
 library(recipes) 
 library(forcats)
+library(mapproj)
 library(tidyverse)
-```
 
-## Including Plots
-
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-#this is just the start point for counties
-county_raw = read_csv("../data/SVI_County_Export.csv", show_col_types = FALSE) |>
-  clean_names()
-
-#now we can clean them properly
-county_svi = county_raw |>
-  separate(location, into = c("county_name", "state"), sep = ", ") |>
-  mutate(
-    county = county_name |> 
-      str_remove(" County") |>
-      str_to_upper()
-  )
-
-#and prepare categories/factors
-prep = function(df) {
-  df |>
-    mutate(across(where(is.character), as.factor)) |>
-    mutate(across(where(is.factor), ~fct_explicit_na(.x, na_level = "Missing"))) |>
-    mutate(across(where(is.numeric), ~ifelse(is.na(.x), median(.x, na.rm = TRUE), .x)))
-}
-
-county_svi_simple = prep(county_svi)
-head(county_svi_simple)
-```
-
-```{r}
-#your health data (the second dataset I imagine you want to use
-ohio_health = read_csv("../data/OhioHealthData.csv", show_col_types = FALSE) |>
-  clean_names() |>
-  mutate(
-    county = str_to_upper(county)
-  )
-
-head(ohio_health)
-```
-
-```{r}
-#inner join the two datasets by county, wsanity checked 54 colns
-analysis_df = ohio_health |>
-  inner_join(county_svi_simple, by = "county")
-
-#head(analysis_df)
-print(colnames(analysis_df))
+# Prepping dataset for heatmaps
+analysis_df <- read_csv("data/SVI_HealthcareAccess_dataset.csv")
 
 ohio_map <- map_data("county") %>% 
   filter(region == "ohio") %>% 
   mutate(county = toupper(subregion))
+
 map_df <- ohio_map %>% 
   left_join(analysis_df, by = "county")
-```
 
-```{R}
+# Heat map: Ohio SVI score
 ggplot(map_df, aes(long, lat, group = group, fill = x2018_overall_svi_score)) +
   geom_polygon(color = "white", size = 0.2) +
   coord_map() +
@@ -94,8 +31,7 @@ ggplot(map_df, aes(long, lat, group = group, fill = x2018_overall_svi_score)) +
   theme_void() +
   labs(fill = "SVI", title = "Ohio Social Vulnerability Index (SVI)")
 
-```
-```{r}
+# Heat map: Total population
 ggplot(map_df, aes(long, lat, group = group, fill = total_population)) +
   geom_polygon(color = "white", linewidth = 0.3) +
   coord_map() +
@@ -105,8 +41,8 @@ ggplot(map_df, aes(long, lat, group = group, fill = total_population)) +
     title = "Total Population by Ohio County",
     fill = "Population"
   )
-```
-```{r}
+
+# Heat map: Socioeconomic Score
 ggplot(map_df, aes(long, lat, group = group, fill = socioeconomic_score)) +
   geom_polygon(color = "white", size = 0.2) +
   coord_map() +
@@ -115,8 +51,7 @@ ggplot(map_df, aes(long, lat, group = group, fill = socioeconomic_score)) +
   labs(fill = "SES", title = "Socioeconomic score")
 
 
-```
-```{r}
+# Heat map: Housing Type & Transportation
 ggplot(map_df, aes(long, lat, group = group, fill = housing_type_transportation)) +
   geom_polygon(color = "white", size = 0.2) +
   coord_map() +
@@ -124,9 +59,7 @@ ggplot(map_df, aes(long, lat, group = group, fill = housing_type_transportation)
   theme_void() +
   labs(fill = "Housing type/Transportation", title = "Housing Type & Transportation")
 
-
-```
-```{R}
+# Heat map: Household Composition & Disability Vulnerability
 ggplot(map_df, aes(long, lat, group = group, fill = house_composition_disability_score)) +
   geom_polygon(color = "white", linewidth = 0.2) +
   coord_map() +
@@ -136,9 +69,9 @@ ggplot(map_df, aes(long, lat, group = group, fill = house_composition_disability
     title =  "Household Composition & Disability Vulnerability\nby Ohio County",
     fill = "Housing/Disability/Theme Score",
   )
-```
-```{r}
-ggplot(map_df, aes(long, lat, group = group, fill = primary_care_physicians_rate)) +
+
+# Heat map: Primary Care Physician Rate
+ggplot(map_df, aes(long, lat, group = group, fill = `Primary Care Physicians Rate`)) +
   geom_polygon(color = "white", linewidth = 0.2) +
   coord_map() +
   scale_fill_viridis_c(option = "rocket", direction = -1) +
@@ -147,7 +80,3 @@ ggplot(map_df, aes(long, lat, group = group, fill = primary_care_physicians_rate
     title =  "Primary Care Physician Rate by Ohio County",
     fill = "PCP Rate per n/1000",
   )
-
-
-```
-
