@@ -18,6 +18,7 @@ library(janitor)
 library(corrplot)
 library(car)
 library(MASS)
+library(ggrepel)
 ```
 
 ## R Markdown
@@ -122,22 +123,12 @@ summary(full_mod)
 
 ```{r}
 # Visualizations
-full_mod_tidy <- broom::tidy(full_mod, conf.int = TRUE)
 
-ggplot(full_mod_tidy, 
-       aes(x = estimate, y = reorder(term, estimate))) +
-  geom_point(color = "darkblue") +
-  geom_errorbarh(aes(xmin = conf.low, xmax = conf.high), height = 0.2) +
-  labs(
-    title = "Coefficient Estimates for Full Regression Model",
-    x = "Estimate",
-    y = "Predictor"
-  ) +
-  theme_minimal()
-
+# Residuals plots
 par(mfrow = c(2,2))
 plot(full_mod)
 
+# PCP Prediction plot
 merged_data$pred_full <- predict(full_mod)
 
 ggplot(merged_data,
@@ -151,8 +142,7 @@ ggplot(merged_data,
   ) +
   theme_minimal()
 
-library(ggrepel)
-
+# PCP vs SVI score
 ggplot(merged_data, aes(x = x2018_overall_svi_score, y = `Primary Care Physicians Rate`)) +
   geom_point(alpha = 0.6, color = "steelblue") +
   geom_smooth(method = "lm", se = TRUE, color = "darkred") +
