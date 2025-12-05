@@ -24,17 +24,11 @@ library(MASS)
 
 ### Import datasets
 ```{r cars}
-# Healthcare access dataset
-excel_sheets("../data/2025 County Health Rankings Ohio Data - v3.xlsx")
-
-main <- read_excel("../data/2025 County Health Rankings Ohio Data - v3.xlsx",
-                       sheet = "Select Measure Data", skip = 1)
-
 # SVI Dataset 
 county_raw = read_csv("../data/SVI_County_Export.csv", show_col_types = FALSE) |>
   clean_names()
 
-#now we can clean them properly
+# SVI dataset cleaning
 county_svi = county_raw |>
   separate(location, into = c("county_name", "state"), sep = ", ") |>
   mutate(
@@ -42,8 +36,6 @@ county_svi = county_raw |>
       str_remove(" County") |>
       str_to_upper()
   )
-
-#and prepare categories/factors
 prep = function(df) {
   df |>
     mutate(across(where(is.character), as.factor)) |>
@@ -54,17 +46,17 @@ prep = function(df) {
 county_svi_simple = prep(county_svi)
 county_svi_simple$county_name <- gsub(" County$", "", county_svi_simple$county_name)
 county_svi_simple$fips <- sprintf("%05d", county_svi_simple$fips)
-
-
 head(county_svi_simple)
-print(colnames(county_svi_simple))
-
 
 ```
 
 ### Create & Export Healthcare Access Dataset 
 
 ```{r}
+# Healthcare access dataset
+excel_sheets("../data/2025 County Health Rankings Ohio Data - v3.xlsx")
+main <- read_excel("../data/2025 County Health Rankings Ohio Data - v3.xlsx",
+                       sheet = "Select Measure Data", skip = 1)
 healthcare_vars <- c(
   "FIPS", "State", "County",  # keep these for identification
 
@@ -90,14 +82,10 @@ merged_data = healthcare_access_data %>%
 head(merged_data)
 print(colnames(merged_data))
 
-
+# Correlation matrix for merged dataset
 numeric_vars <- dplyr::select(merged_data, where(is.numeric))
-
-
 cor_matrix = cor(numeric_vars, use = "pairwise.complete.obs")
-
 corrplot(cor_matrix, method = "color", tl.cex = 0.7)
-
 ```
 
 ### Fit model
@@ -186,9 +174,6 @@ ggplot(merged_data, aes(x = x2018_overall_svi_score, y = `Primary Care Physician
 step_mod = stepAIC(full_mod, direction = "backward")
 ```
 
-```{r}
-summary(step_mod)
-```
 
 ```{r}
 AIC(full_mod, step_mod)
@@ -197,111 +182,7 @@ summary(full_mod)$adj.r.squared
 summary(step_mod)$adj.r.squared
 names(step_mod$coefficients)[-1]
 ```
-# Stepwise Reduction Model 
 ```{r}
 summary(step_mod)
 ```
-
-### Lasso verification
-```{r}
-lasso_covariates = c(
-  # predictor of interest
-  "total_population",
-  "housing_units",
-  "occupied_households",
-  "below_poverty",
-  "income",
-  "no_hs_diploma",
-  "age_17_or_under",
-  "single_parent_household",
-  "housing_type_transportation",
-  "multi_unit_structure",
-  "crowding" 
-)
-```
-
-```{r}
-library(glmnet)
-y = merged_data$`Primary Care Physicians Rate`
-
-X = model.matrix(
-  as.formula(paste("~", paste(lasso_covariates, collapse = " + "))), 
-  data = merged_data
-)[, -1] 
-```
-
-```{r}
-set.seed(123)
-
-lasso_cv = cv.glmnet(
-  X, y,
-  alpha = 1,
-  nfolds = 10,
-  standardize = TRUE
-)
-
-plot(lasso_cv)
-```
-
-```{r}
-#list of best covariates from LASSO
-coef_lasso = coef(lasso_cv, s = "lambda.min")
-selected_vars = rownames(coef_lasso)[coef_lasso[,1] != 0]
-selected_vars
-```
-
-
-
-
-Appendix 
-
-# creating csv from raw data file
-
-```{r}
-excel_sheets("../data/2025 County Health Rankings Ohio Data - v3.xlsx")
-
-main <- read_excel("../data/2025 County Health Rankings Ohio Data - v3.xlsx",
-                       sheet = "Select Measure Data", skip = 1)
-healthcare_vars <- c(
-  "FIPS", "State", "County",  # keep these for identification
-
-  "% Fair or Poor Health",
-  "95% CI - Low...73",
-  "95% CI - High...74",    
-  
-  "# Primary Care Physicians",
-  "Primary Care Physicians Rate",
-  "Primary Care Physicians Ratio",
-  "National Z-Score...90",                                    
-
-  "# Mental Health Providers",
-  "Mental Health Provider Rate",
-  "Mental Health Provider Ratio",
-  "National Z-Score...94",  
-
-  "# Dentists",
-  "Dentist Rate",
-  "Dentist Ratio",
-  "National Z-Score...98",  
-  
-  "Preventable Hospitalization Rate",
-    
-  "# Uninsured",
-  "% Uninsured",
-
-  "% Long Commute - Drives Alone",                            
-  
-  "% Unemployed",
-  "National Z-Score...181",
-  "80th Percentile Income",
-  "20th Percentile Income",
-  
-  "Income Ratio",
-  "National Z-Score...185"    
-)
-
-healthcare_access_data <- main[, healthcare_vars]
-#write_csv(healthcare_access_data, "OhioHealthData.csv")
-```
-
 
