@@ -4,13 +4,13 @@
  </h4>
  
 <p> 
-  **Project Overview:** For our Public Health 5015 final project we decided to explore the question: How do healthcare access and resource availability differ across Ohio’s top three counties with the highest Social Vulnerability Index, and what gaps exist between vulnerability and support? The directional expectation is that the counties that have higher SVI’s will have lower access to healthcare and resource availability. 
+  <Strong>Project Overview:</Strong> For our Public Health 5015 final project we decided to explore the question: How do healthcare access and resource availability differ across Ohio’s top three counties with the highest Social Vulnerability Index, and what gaps exist between vulnerability and support? The directional expectation is that the counties that have higher SVI’s will have lower access to healthcare and resource availability. 
 </p>
 
 <p>
   <h5> Data Sources</h5>
   <ul>
-    <li> **Ohio Health Improvement Zones (OHIZ):** https://odh.ohio.gov/know-our-programs/health-excellence/health-improvement-zones <br> This dataset describes social determinant factors that describe “social vulnerability” and are used to aggregate a SVI score. It has 25 variables and 88 observations for each Ohio county and the variables fall under 4 different categories:
+    <li> <Strong>Ohio Health Improvement Zones (OHIZ):</Strong> https://odh.ohio.gov/know-our-programs/health-excellence/health-improvement-zones <br> This dataset describes social determinant factors that describe “social vulnerability” and are used to aggregate a SVI score. It has 25 variables and 88 observations for each Ohio county and the variables fall under 4 different categories:
 </li>
       <ul>
         <li> Socioeconomic Status </li>
@@ -18,7 +18,7 @@
         <li> Racial & Ethnic Minority Status </li>
         <li> Housing Type & Transportation </li>
       </ul>
-    <li> **County Health Rankings & Roadmaps:** https://www.countyhealthrankings.org/health-data/ohio/data-and-resources <br> This dataset Contains county-level health indicators for all counties in Ohio. There are 225 variables and 88 observations for each Ohio county. The variables fall under these different categories:
+    <li> <Strong>County Health Rankings & Roadmaps:</Strong> https://www.countyhealthrankings.org/health-data/ohio/data-and-resources <br> This dataset Contains county-level health indicators for all counties in Ohio. There are 225 variables and 88 observations for each Ohio county. The variables fall under these different categories:
 </li>
       <ul>
         <li>  Length of Life </li>
