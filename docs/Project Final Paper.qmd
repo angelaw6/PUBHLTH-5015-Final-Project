@@ -156,11 +156,17 @@ Content to include:
 
 Important: Report results clearly, but do not evaluate their broader meaning here.
 
+
 Full model visualizations
+Our full model had many variables that were not significant to what we are looking for in the data. There are 22 predictors that the full model controlled for. The outcome we are looking at in this data set being the Primary Care Physician rate. It is strongly shaped by structural and demographic factors of the variables. 
 
 ![](images/clipboard-4276021162.png)
 
 (residual plots)
+We can assume from our diagnostic plots that we are satisfying linearity, normality, homoscedasitiy and the absence of very influential outliers. There are some deviations as seen in the residuals versus fitted, but they are minor and do not seem significant enough to compromise the regression model.
+
+(correlation matrix)
+The correlation matrix shows strong clustering among many of the socioeconomic and housing-related variables. This is particularily strong within population density and economic disadvanage. This indicates there is multicollinearity in the strucural domains, which suppoets the use of multivariable regression instead of sole predictors. There is no single correlation pattern that dominates the matrix, therefore supporting the stability of the final model.
 
 ![](images/clipboard-1964280172.png)
 
@@ -169,6 +175,7 @@ Full model visualizations
 ![](images/clipboard-3727932522.png)
 
 (Final Model After stepwise regression)
+The final model shows that poverty, educational attainment, youth population pattern, and income as the most powerful independent predictors of the primary care physician rate, even after controlling for housing conditions, household composition, and population density, explaining over 70% of the observed variance.
 
 # Conclusion
 
