@@ -1,0 +1,30 @@
+---
+title: "Final Project Paper"
+format: html
+editor: visual
+---
+
+## Introduction
+
+## Methods
+
+## Results
+
+## Conclusion
+
+## Appendix
+
+Here is an appendix of all our code.
+
+```{r}
+
+```
+
+You can add options to executable code like this
+
+```{r}
+#| echo: false
+2 * 2
+```
+
+The `echo: false` option disables the printing of code (only output is displayed).
