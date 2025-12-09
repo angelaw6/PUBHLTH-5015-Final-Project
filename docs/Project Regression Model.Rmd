@@ -23,13 +23,6 @@ library(ggrepel)
 
 # Introduction
 
-Our group has decided to study the public health topic of healthcare access in Ohio. We set out to do this by examining vulnerable populations and the access to healthcare options that people have available to them. We have chosen to do this by first looking at the Ohio Department of Health’s data on the Ohio Health Improvement Zones. From these zones, we were able to narrow that we wanted to focus on examining the Social Vulnerability Index (SVI) that is used to determine the OHIZ.  SVI data is given by county, to see which populations are at greatest risk in Ohio, with the breakdown of all different kinds of SDOH affecting this value. We have also decided to use County-level health indicators to help figure out the healthcare access vulnerabilities in the counties. Doing research on this topic is of great importance to figure out where gaps in structural support are. We have chosen to find the vulnerable populations in Ohio, and then compared the overlap between the primary care physician rates per county to determine the resource availability of healthcare access. 
-The first data set includes the Social Vulnerability index by county. The Social Vulnerability index per County is found by compounding many individual SDOH factors. These SDOH factors are the non-medical ways in which people work, play and live in their environment and the effect it has on health outcomes. The data set compares many factors of Socioeconomic status, including income, unemployment rate, socioeconomic score and below poverty amounts. It also has factors of built environment, including transport ability, home crowding and types of homes/availability and usage of them. The data set also includes demographic factors such as minority status, disability score, English speaking ability, and minority and senior age population. 
-The second data set has many different county-level health indicators across all counties in Ohio. This all ranges in five different categories: Length of Life, Quality of Life, Health Infrastructure, Physical Environment ,and Social and Economic Factors. We chose to use this dataset primarily for the data it could provide on Health Care access. Even though it compares many different aspects of county-wide health, this data set provided what we could use to examine the gaps in vulnerability and support.
- Our research question is:  How does healthcare access differ across Ohio counties based on social vulnerability factors? What gaps exist between vulnerability and support? We expect that counties with higher social vulnerability will have less access to primary care physicians. 
-
-# Appendix
-
 ## Set up dataset
 ```{r cars}
 # SVI Dataset Import
@@ -63,8 +56,8 @@ head(county_svi_simple)
 ```{r}
 # Healthcare access dataset
 excel_sheets("../data/2025 County Health Rankings Ohio Data - v3.xlsx")
-main <- read_excel("../data/2025 County Health Rankings Ohio Data - v3.xlsx",
-                       sheet = "Select Measure Data", skip = 1)
+main <- suppressMessages(read_excel("../data/2025 County Health Rankings Ohio Data - v3.xlsx",
+                       sheet = "Select Measure Data", skip = 1, progress = FALSE))
 healthcare_vars <- c(
   "FIPS", "State", "County",  # keep these for identification
 
@@ -76,7 +69,6 @@ healthcare_vars <- c(
 
 healthcare_access_data <- main[, healthcare_vars]
 healthcare_access_data <- healthcare_access_data[-1, ]
-head(healthcare_access_data)
 
 ```
 
