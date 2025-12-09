@@ -42,17 +42,53 @@ Our second data set is from a program of the University of Wisconsin Population 
 
         -   OB/GYN
 
--   Independent Variables:
+-   Independent Variables: All variables that describe Social Vulnerability
 
-    -   
+    -   All our Covariates:
 
-        -   Socioeconomic score \| continuous variable on scale 0 to 1
+        -   Total Population
 
-        -   Household Composition & Disability score \| continuous variable on scale 0 to 1
+        -   Housing Units
 
-        -   Minority status and language \| continuous variable on scale 0 to 1
+        -   Occupied Households
 
-        -   Housing type & Transportation \| continuous variable on scale 0 to 1
+        -   Socioeconomic Score
+
+        -   Below Poverty
+
+        -   Unemployed
+
+        -   Income
+
+        -   No high school diploma
+
+        -   House Composition & Disability Score
+
+        -   Age 65 or older
+
+        -   Age 17 or under
+
+        -   Civilian with a Disability
+
+        -   Single Parent Household
+
+        -   Minority Status Language
+
+        -   Minority
+
+        -   Speak english less than well
+
+        -   Housing type transportation
+
+        -   Multi unit structure
+
+        -   Mobile homes
+
+        -   Crowding
+
+        -   No vehicle
+
+        -   Group quarters
 
 #### Exploratory Data Analysis
 
@@ -144,7 +180,7 @@ Our limitations include that the two datasets are from different years, the SVI 
 
 Some things to do in the future to help increase the Primary Care Physician Rate includes strengthening education and health literacy programs in counties with a low high school diploma rate. This is because as we can see from the results, having a high number of people with no high school diploma has a negative effect on the primary care physician rate. Another way to help increase access through the PCP rate is by developing support services for single-parent households. By giving more support to these households, it can help decrease the number of people that are struggling with access.
 
-## Appendix
+# Appendix
 
 Here is an appendix of all our code.
 
