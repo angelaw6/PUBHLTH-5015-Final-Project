@@ -6,7 +6,7 @@ editor: visual
 
 ## Introduction
 
-Our group has decided to study the public health topic of healthcare access in Ohio. We set out to do this by examining vulnerable populations and the access to healthcare options that people have available to them. We have chosen to do this by first looking at the Ohio Department of Health’s data on the Ohio Health Improvement Zones. From these zones, we were able to narrow that we wanted to focus on examining the Social Vulnerability Index (SVI) that is used to determine the OHIZ.  SVI data is given by county, to see which populations are at greatest risk in Ohio, with the breakdown of all different kinds of SDOH affecting this value. We have also decided to use County-level health indicators to help figure out the healthcare access vulnerabilities in the counties. Doing research on this topic is of great importance to figure out where gaps in structural support are. We have chosen to find the vulnerable populations in Ohio, and then compared the overlap between the primary care physician rates per county to determine the resource availability of healthcare access. 
+	Our group has decided to study the public health topic of healthcare access in Ohio. We set out to do this by examining vulnerable populations and the access to healthcare options that people have available to them. We have chosen to do this by first looking at the Ohio Department of Health’s data on the Ohio Health Improvement Zones. From these zones, we were able to narrow that we wanted to focus on examining the Social Vulnerability Index (SVI) that is used to determine the OHIZ.  SVI data is given by county, to see which populations are at greatest risk in Ohio, with the breakdown of all different kinds of SDOH affecting this value. We have also decided to use County-level health indicators to help figure out the healthcare access vulnerabilities in the counties. Doing research on this topic is of great importance to figure out where gaps in structural support are. We have chosen to find the vulnerable populations in Ohio, and then compared the overlap between the primary care physician rates per county to determine the resource availability of healthcare access. 
 
 #### Data description
 
@@ -54,7 +54,7 @@ Our group has decided to study the public health topic of healthcare access in O
 
         -   Housing type & Transportation \| continuous variable on scale 0 to 1
 
-#### Exploratory Data Analysis
+Exploratory Data Analysis
 
 We will first begin with some exploratory data analysis to summarize SVI variables and healthcare access measures across all the Ohio counties. 
 
@@ -64,7 +64,7 @@ We will first begin with some exploratory data analysis to summarize SVI variabl
 
 -   We then create visuals after fitting the full model to assess its goodness of fit. These include the residual plots of the full model as well as a graph of predicted PCP rate on our full model versus the actual real PCP rate to give a better visual of our model's prediction accuracy. \
 
-#### Linear Regression Modeling
+Linear Regression Modeling
 
 We fit the dataset to a linear regression model to quantify the relationship between variables that describe social vulnerability and Primary Care Physician rate
 
@@ -74,13 +74,13 @@ We fit the dataset to a linear regression model to quantify the relationship bet
 
     -   We fit the full model with all variables that were a part of the SVI dataset. This means for example no HS diploma, aged 17 or younger, english language proficiency, and more for a total of 22 explanatory variables. 
 
-#### Backwards Stepwise Regression
+Backwards Stepwise Regression
 
 We did backwards stepwise regression on our full model to do variable selection. We based our model criteria on AIC values. 
 
-**Software statement: All analyses will be conducted in R**
+Software statement: All analyses will be conducted in R
 
-## Results
+Results
 
 Instructions: Present the main numerical and graphical findings.
 
@@ -122,19 +122,13 @@ Important: Report results clearly, but do not evaluate their broader meaning her
 
 Full model visualizations
 
-![](images/clipboard-4276021162.png)
-
 (residual plots)
-
-![](images/clipboard-1964280172.png){width="490"}
 
 (predicted vs actual PCP)
 
-![](images/clipboard-2430598029.png){width="497"}
-
 (Final Model After stepwise regression)
 
-## Conclusion
+Conclusion
 
 	From looking at the final model we can see that below poverty, occupied households, income, age 17 or under, and housing type transportation all have a positive impact on the primary care physician rate. Meaning that for an increase of these variables, the expected primary care physician rate will increase. Then crowding, single parent household, total population, and no hs diploma all have a negative impact on the PCP rate. This means that as these variables increase, the expected primary care physician rate decreases. These results do support our original hypothesis. 
 
