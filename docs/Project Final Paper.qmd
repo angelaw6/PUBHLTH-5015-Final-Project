@@ -1,6 +1,6 @@
 ---
 title: "Final Project Paper"
-format: html
+format: pdf
 editor: visual
 ---
 
