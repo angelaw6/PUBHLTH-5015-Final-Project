@@ -43,8 +43,7 @@
   <ol type = "1"> 
    <li> Clone the repository. </li>
    <li> Open the RStudio Project. </li>
-   <li> * Install dependencies? (e.g., run renv::restore() or a provided installation script).</li>
-   <li> * Knit main R Markdown file to reproduce results, or run scripts to reproduce model and heat map visuals. </li>
+   <li> Knit main Quarto file to reproduce results. </li>
   </ol>
 </p>
 
